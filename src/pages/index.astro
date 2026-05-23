@@ -1,0 +1,315 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CartWidget from "../components/CartWidget";
+import {
+  categories,
+  faqItems,
+  heroStats,
+  highlights,
+  products,
+  promotions,
+  siteConfig,
+} from "../data/catalog";
+
+const pageTitle = `${siteConfig.companyName} | Filtros para vehiculos`;
+const pageDescription =
+  "Catalogo de filtros para aceites, promociones vigentes y contacto comercial para talleres, distribuidores y clientes finales.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <header class="hero" id="inicio">
+    <div class="hero__background"></div>
+    <nav class="nav container">
+      <a class="brand" href="#inicio">
+        <span class="brand__badge">CF</span>
+        <span class="brand__text">
+          <strong>{siteConfig.companyName}</strong>
+          <small>{siteConfig.tagline}</small>
+        </span>
+      </a>
+
+      <button class="nav__toggle" type="button" aria-label="Abrir menu" data-nav-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav__links" data-nav-links>
+        <a href="#catalogo">Catalogo</a>
+        <a href="#promociones">Promociones</a>
+        <a href="#faq">Preguntas frecuentes</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#carrito" class="nav__cta">Carrito WhatsApp</a>
+      </div>
+    </nav>
+
+    <div class="hero__content container">
+      <div class="hero__copy">
+        <p class="eyebrow">Linea estatica lista para crecer</p>
+        <h1>Filtros para aceite con catalogo claro y estructura comercial lista para vender.</h1>
+        <p class="hero__text">
+          Base web en Astro para una empresa de filtros de vehiculos: catalogo, promos, preguntas
+          frecuentes, formulario de contacto y carrito simple con salida directa a WhatsApp.
+        </p>
+
+        <div class="hero__actions">
+          <a class="button button--primary" href="#catalogo">Ver catalogo</a>
+          <a class="button button--ghost" href="#contacto">Solicitar asesoramiento</a>
+        </div>
+
+        <div class="hero__stats">
+          {
+            heroStats.map((item) => (
+              <article>
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <aside class="hero__panel">
+        <p class="panel__label">Cobertura destacada</p>
+        <ul class="panel__list">
+          <li>Autos compactos y utilitarios</li>
+          <li>Pick-ups y vehiculos de trabajo</li>
+          <li>Flotas con mantenimiento programado</li>
+        </ul>
+        <div class="panel__note">
+          <span>Destacado</span>
+          <p>La arquitectura ya suma un carrito simple listo para pedido comercial por WhatsApp.</p>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="highlights container">
+      {
+        highlights.map((item) => (
+          <article class="highlight-card">
+            <h2>{item.title}</h2>
+            <p>{item.description}</p>
+          </article>
+        ))
+      }
+    </section>
+
+    <section class="section section--catalog" id="catalogo">
+      <div class="container">
+        <div class="section__header">
+          <div>
+            <p class="eyebrow">Catalogo</p>
+            <h2>Filtros organizados por tipo de uso</h2>
+          </div>
+          <p>
+            Estos productos son ejemplos de presentacion. La grilla esta preparada para reemplazar
+            el contenido por el catalogo real de la empresa o conectarse luego a un CMS.
+          </p>
+        </div>
+
+        <div class="catalog-toolbar">
+          <div class="catalog-filters" role="tablist" aria-label="Filtrar catalogo">
+            {
+              categories.map((category, index) => (
+                <button
+                  class={`chip ${index === 0 ? "is-active" : ""}`}
+                  type="button"
+                  data-filter={category.id}
+                >
+                  {category.label}
+                </button>
+              ))
+            }
+          </div>
+          <p class="catalog-toolbar__hint">
+            Tip: luego puede conectarse con una tabla, JSON, headless CMS o ERP liviano.
+          </p>
+        </div>
+
+        <div class="catalog-grid" data-catalog-grid>
+          {
+            products.map((product) => (
+              <article class="product-card" data-category={product.category}>
+                <span class="product-card__tag">{product.categoryLabel}</span>
+                <h3>{product.name}</h3>
+                <p>{product.description}</p>
+                <ul>
+                  {product.features.map((feature) => <li>{feature}</li>)}
+                </ul>
+                <button
+                  type="button"
+                  class="button button--primary product-card__button"
+                  data-add-to-cart={product.id}
+                >
+                  Agregar al carrito
+                </button>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="promociones">
+      <div class="container">
+        <div class="section__header">
+          <div>
+            <p class="eyebrow">Promociones</p>
+            <h2>Campanas comerciales destacadas</h2>
+          </div>
+          <p>Bloques pensados para destacar ofertas temporales o beneficios por volumen.</p>
+        </div>
+
+        <div class="promo-grid">
+          {
+            promotions.map((promo) => (
+              <article class={`promo-card ${promo.accent ? "promo-card--accent" : ""}`}>
+                <p class="promo-card__kicker">{promo.kicker}</p>
+                <h3>{promo.title}</h3>
+                <p>{promo.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--split" id="faq">
+      <div class="container split-layout">
+        <div class="split-layout__intro">
+          <p class="eyebrow">Preguntas frecuentes</p>
+          <h2>Informacion clave para reducir consultas repetidas</h2>
+          <p>
+            El bloque funciona como acordeon simple. Puede ampliarse luego con mas contenido tecnico,
+            politicas de envio o condiciones comerciales.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          {
+            faqItems.map((item, index) => (
+              <details class="faq-item" open={index === 0}>
+                <summary>{item.question}</summary>
+                <p>{item.answer}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--contact" id="contacto">
+      <div class="container contact-layout">
+        <div class="contact-copy">
+          <p class="eyebrow">Contacto</p>
+          <h2>Canal directo para consultas comerciales</h2>
+          <p>
+            Formulario estatico de demostracion para captar consultas. Se puede conectar despues a
+            email, WhatsApp, Forms o un backend liviano.
+          </p>
+
+          <div class="contact-points">
+            <p><strong>Telefono:</strong> {siteConfig.contactPhone}</p>
+            <p><strong>Email:</strong> {siteConfig.contactEmail}</p>
+            <p><strong>Horario:</strong> {siteConfig.contactHours}</p>
+          </div>
+        </div>
+
+        <form class="contact-form">
+          <label>
+            Nombre
+            <input type="text" name="nombre" placeholder="Tu nombre o empresa" />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="correo@empresa.com" />
+          </label>
+          <label>
+            Consulta
+            <textarea
+              name="consulta"
+              rows="5"
+              placeholder="Contanos que filtros necesitas o que tipo de asesoramiento buscas"
+            ></textarea>
+          </label>
+          <button type="submit" class="button button--primary">Enviar consulta</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" id="carrito">
+      <div class="container">
+        <CartWidget
+          client:load
+          products={products.map(({ id, code, name, category, categoryLabel, description }) => ({
+            id,
+            code,
+            name,
+            category,
+            categoryLabel,
+            description,
+          }))}
+          whatsappNumber={siteConfig.whatsappNumber}
+        />
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>{siteConfig.companyName}. Sitio base para catalogo, promociones y contacto comercial.</p>
+      <a href="#inicio">Volver arriba</a>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.querySelector("[data-nav-toggle]");
+    const navLinks = document.querySelector("[data-nav-links]");
+    const chips = document.querySelectorAll("[data-filter]");
+    const productCards = document.querySelectorAll("[data-category]");
+    const addToCartButtons = document.querySelectorAll("[data-add-to-cart]");
+
+    if (navToggle instanceof HTMLButtonElement && navLinks instanceof HTMLElement) {
+      navToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("is-open");
+      });
+
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("is-open");
+        });
+      });
+    }
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const selectedFilter = chip.getAttribute("data-filter");
+
+        chips.forEach((item) => item.classList.remove("is-active"));
+        chip.classList.add("is-active");
+
+        productCards.forEach((card) => {
+          const matches =
+            selectedFilter === "todos" || card.getAttribute("data-category") === selectedFilter;
+
+          card.classList.toggle("is-hidden", !matches);
+        });
+      });
+    });
+
+    addToCartButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const productId = button.getAttribute("data-add-to-cart");
+        if (!productId) return;
+
+        window.dispatchEvent(
+          new CustomEvent("cart:add", {
+            detail: { productId },
+          }),
+        );
+      });
+    });
+  </script>
+</BaseLayout>

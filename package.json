@@ -1,0 +1,17 @@
+{
+  "name": "filters-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/react": "^5.0.5",
+    "astro": "^6.3.7",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  }
+}
