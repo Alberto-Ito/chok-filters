@@ -101,13 +101,8 @@ export default function CartWidget({ products, whatsappNumber }: Props) {
   return (
     <div className="cart-widget">
       <div>
-        <p className="eyebrow">Carrito simple</p>
-        <h2>Pedido por WhatsApp listo para usar</h2>
+        <h2>Carrito</h2>
       </div>
-      <p className="cart-widget__text">
-        Este carrito mantiene la simplicidad del sitio estatico y genera un pedido directo al
-        WhatsApp comercial.
-      </p>
 
       <div className="cart-widget__summary">
         <strong>{items.length} productos</strong>

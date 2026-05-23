@@ -1,34 +1,17 @@
 export const siteConfig = {
   companyName: "Chok Filtros",
   tagline: "Proteccion para cada motor",
-  whatsappNumber: import.meta.env.PUBLIC_WHATSAPP_NUMBER || "5491100000000",
-  contactEmail: "ventas@chokfiltros.com",
+  whatsappNumber: import.meta.env.PUBLIC_WHATSAPP_NUMBER || "5491168595152",
+  contactEmail: "ito.alberto.88@gmail.com",
   contactPhone: "+54 11 0000 0000",
   contactHours: "Lunes a viernes de 8 a 18 hs",
+  instagramUrl: "https://www.instagram.com/ito.alberto/",
 };
 
 export const heroStats = [
   { value: "250+", label: "Referencias de filtros" },
   { value: "48 hs", label: "Respuesta comercial" },
   { value: "B2B y retail", label: "Atencion para talleres y clientes" },
-];
-
-export const highlights = [
-  {
-    title: "Busqueda simple",
-    description:
-      "Catalogo dividido por categorias para ubicar referencias rapidamente.",
-  },
-  {
-    title: "Promociones visibles",
-    description:
-      "Espacio dedicado a combos, volumen y campanas temporales.",
-  },
-  {
-    title: "Escalable",
-    description:
-      "Estructura pensada para sumar carrito, stock y acciones comerciales despues.",
-  },
 ];
 
 export const categories = [
@@ -165,6 +148,6 @@ export const faqItems = [
   {
     question: "Este sitio puede sumar carrito mas adelante?",
     answer:
-      "Si. En esta version ya queda un carrito simple conectado a WhatsApp como primer paso.",
+      "Si. El pedido puede armarse y enviarse directamente para su confirmacion comercial.",
   },
 ];

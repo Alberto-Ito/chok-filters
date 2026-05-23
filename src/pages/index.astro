@@ -5,7 +5,6 @@ import {
   categories,
   faqItems,
   heroStats,
-  highlights,
   products,
   promotions,
   siteConfig,
@@ -39,17 +38,17 @@ const pageDescription =
         <a href="#promociones">Promociones</a>
         <a href="#faq">Preguntas frecuentes</a>
         <a href="#contacto">Contacto</a>
-        <a href="#carrito" class="nav__cta">Carrito WhatsApp</a>
+        <a href="#carrito" class="nav__cta">Hacer pedido</a>
       </div>
     </nav>
 
     <div class="hero__content container">
       <div class="hero__copy">
-        <p class="eyebrow">Linea estatica lista para crecer</p>
-        <h1>Filtros para aceite con catalogo claro y estructura comercial lista para vender.</h1>
+        <p class="eyebrow">Calidad y cobertura</p>
+        <h1>Filtros Chok, maximizamos tu experiencia automotriz.</h1>
         <p class="hero__text">
-          Base web en Astro para una empresa de filtros de vehiculos: catalogo, promos, preguntas
-          frecuentes, formulario de contacto y carrito simple con salida directa a WhatsApp.
+          Soluciones de filtros para vehiculos, talleres, distribuidores y flotas con atencion
+          comercial directa.
         </p>
 
         <div class="hero__actions">
@@ -69,44 +68,25 @@ const pageDescription =
         </div>
       </div>
 
-      <aside class="hero__panel">
-        <p class="panel__label">Cobertura destacada</p>
-        <ul class="panel__list">
-          <li>Autos compactos y utilitarios</li>
-          <li>Pick-ups y vehiculos de trabajo</li>
-          <li>Flotas con mantenimiento programado</li>
-        </ul>
-        <div class="panel__note">
-          <span>Destacado</span>
-          <p>La arquitectura ya suma un carrito simple listo para pedido comercial por WhatsApp.</p>
-        </div>
+      <aside class="hero__visual" aria-hidden="true">
+        <figure class="filter-image-frame">
+          <img
+            src="/images/filters.png"
+            alt="Despiece tecnico de un filtro de aire automotriz"
+            class="filter-image"
+          />
+        </figure>
       </aside>
     </div>
   </header>
 
   <main>
-    <section class="highlights container">
-      {
-        highlights.map((item) => (
-          <article class="highlight-card">
-            <h2>{item.title}</h2>
-            <p>{item.description}</p>
-          </article>
-        ))
-      }
-    </section>
-
     <section class="section section--catalog" id="catalogo">
       <div class="container">
         <div class="section__header">
           <div>
-            <p class="eyebrow">Catalogo</p>
-            <h2>Filtros organizados por tipo de uso</h2>
+            <h2>Nuestros productos</h2>
           </div>
-          <p>
-            Estos productos son ejemplos de presentacion. La grilla esta preparada para reemplazar
-            el contenido por el catalogo real de la empresa o conectarse luego a un CMS.
-          </p>
         </div>
 
         <div class="catalog-toolbar">
@@ -123,9 +103,6 @@ const pageDescription =
               ))
             }
           </div>
-          <p class="catalog-toolbar__hint">
-            Tip: luego puede conectarse con una tabla, JSON, headless CMS o ERP liviano.
-          </p>
         </div>
 
         <div class="catalog-grid" data-catalog-grid>
@@ -138,13 +115,12 @@ const pageDescription =
                 <ul>
                   {product.features.map((feature) => <li>{feature}</li>)}
                 </ul>
-                <button
-                  type="button"
+                <a
+                  href={`/productos/${product.id}/`}
                   class="button button--primary product-card__button"
-                  data-add-to-cart={product.id}
                 >
-                  Agregar al carrito
-                </button>
+                  Ver detalle
+                </a>
               </article>
             ))
           }
@@ -156,10 +132,8 @@ const pageDescription =
       <div class="container">
         <div class="section__header">
           <div>
-            <p class="eyebrow">Promociones</p>
-            <h2>Campanas comerciales destacadas</h2>
+            <h2>Promociones destacadas</h2>
           </div>
-          <p>Bloques pensados para destacar ofertas temporales o beneficios por volumen.</p>
         </div>
 
         <div class="promo-grid">
@@ -178,13 +152,8 @@ const pageDescription =
 
     <section class="section section--split" id="faq">
       <div class="container split-layout">
-        <div class="split-layout__intro">
-          <p class="eyebrow">Preguntas frecuentes</p>
-          <h2>Informacion clave para reducir consultas repetidas</h2>
-          <p>
-            El bloque funciona como acordeon simple. Puede ampliarse luego con mas contenido tecnico,
-            politicas de envio o condiciones comerciales.
-          </p>
+        <div class="section__header">
+          <h2>Preguntas frecuentes</h2>
         </div>
 
         <div class="faq-list">
@@ -203,21 +172,65 @@ const pageDescription =
     <section class="section section--contact" id="contacto">
       <div class="container contact-layout">
         <div class="contact-copy">
-          <p class="eyebrow">Contacto</p>
-          <h2>Canal directo para consultas comerciales</h2>
-          <p>
-            Formulario estatico de demostracion para captar consultas. Se puede conectar despues a
-            email, WhatsApp, Forms o un backend liviano.
-          </p>
+          <div class="section__header">
+            <h2>Contacto</h2>
+          </div>
+          <p>Contactanos por el canal que prefieras, te esperamos.</p>
 
-          <div class="contact-points">
-            <p><strong>Telefono:</strong> {siteConfig.contactPhone}</p>
-            <p><strong>Email:</strong> {siteConfig.contactEmail}</p>
-            <p><strong>Horario:</strong> {siteConfig.contactHours}</p>
+          <div class="contact-points contact-links">
+            <a
+              class="contact-link"
+              href={`https://wa.me/${siteConfig.whatsappNumber}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span class="contact-link__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.59 2 2.16 6.43 2.16 11.87c0 1.74.45 3.44 1.3 4.94L2 22l5.33-1.4a9.84 9.84 0 0 0 4.7 1.2h.01c5.44 0 9.87-4.43 9.87-9.87a9.8 9.8 0 0 0-2.86-7.02Zm-7.02 15.22h-.01a8.16 8.16 0 0 1-4.16-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.14 8.14 0 0 1-1.25-4.36c0-4.5 3.66-8.16 8.17-8.16 2.18 0 4.22.85 5.76 2.39a8.1 8.1 0 0 1 2.39 5.77c0 4.5-3.66 8.16-8.16 8.16Zm4.48-6.11c-.25-.13-1.48-.73-1.71-.81-.23-.08-.39-.13-.56.12-.17.25-.64.81-.79.98-.15.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.85-.2-.48-.41-.41-.56-.42h-.48c-.17 0-.43.06-.65.31-.22.25-.85.83-.85 2.02s.87 2.34.99 2.5c.12.17 1.71 2.61 4.13 3.66.58.25 1.03.41 1.38.52.58.18 1.11.15 1.53.09.47-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.15-1.19-.06-.1-.23-.17-.48-.29Z"
+                  />
+                </svg>
+              </span>
+              <span>
+                <strong>WhatsApp</strong>
+                <small>+54 9 11 6859 5152</small>
+              </span>
+            </a>
+            <a class="contact-link" href={`mailto:${siteConfig.contactEmail}`}>
+              <span class="contact-link__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.24-7.38 4.62a1.2 1.2 0 0 1-1.24 0L4 8.24V6.8l7.92 4.95 8.08-4.95v1.44Z"
+                  />
+                </svg>
+              </span>
+              <span>
+                <strong>Email</strong>
+                <small>{siteConfig.contactEmail}</small>
+              </span>
+            </a>
+            <a
+              class="contact-link"
+              href={siteConfig.instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span class="contact-link__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2.18A2.82 2.82 0 0 0 4.18 7v10A2.82 2.82 0 0 0 7 19.82h10A2.82 2.82 0 0 0 19.82 17V7A2.82 2.82 0 0 0 17 4.18H7Zm10.55 1.64a1.27 1.27 0 1 1-1.27 1.27 1.27 1.27 0 0 1 1.27-1.27ZM12 7a5 5 0 1 1-5 5 5 5 0 0 1 5-5Zm0 2.18A2.82 2.82 0 1 0 14.82 12 2.82 2.82 0 0 0 12 9.18Z"
+                  />
+                </svg>
+              </span>
+              <span>
+                <strong>Instagram</strong>
+                <small>@ito.alberto</small>
+              </span>
+            </a>
           </div>
         </div>
 
-        <form class="contact-form">
+        <form class="contact-form" data-contact-form data-contact-email={siteConfig.contactEmail}>
           <label>
             Nombre
             <input type="text" name="nombre" placeholder="Tu nombre o empresa" />
@@ -259,7 +272,7 @@ const pageDescription =
 
   <footer class="footer">
     <div class="container footer__inner">
-      <p>{siteConfig.companyName}. Sitio base para catalogo, promociones y contacto comercial.</p>
+      <p>{siteConfig.companyName}. Catalogo, promociones y atencion comercial.</p>
       <a href="#inicio">Volver arriba</a>
     </div>
   </footer>
@@ -269,7 +282,7 @@ const pageDescription =
     const navLinks = document.querySelector("[data-nav-links]");
     const chips = document.querySelectorAll("[data-filter]");
     const productCards = document.querySelectorAll("[data-category]");
-    const addToCartButtons = document.querySelectorAll("[data-add-to-cart]");
+    const contactForm = document.querySelector("[data-contact-form]");
 
     if (navToggle instanceof HTMLButtonElement && navLinks instanceof HTMLElement) {
       navToggle.addEventListener("click", () => {
@@ -299,17 +312,30 @@ const pageDescription =
       });
     });
 
-    addToCartButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const productId = button.getAttribute("data-add-to-cart");
-        if (!productId) return;
+    if (contactForm instanceof HTMLFormElement) {
+      contactForm.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-        window.dispatchEvent(
-          new CustomEvent("cart:add", {
-            detail: { productId },
-          }),
-        );
+        const formData = new FormData(contactForm);
+        const contactEmail = contactForm.getAttribute("data-contact-email") || "";
+        const nombre = String(formData.get("nombre") || "").trim();
+        const email = String(formData.get("email") || "").trim();
+        const consulta = String(formData.get("consulta") || "").trim();
+
+        const subject = `Consulta web de ${nombre || "cliente"}`;
+        const body = [
+          "Hola, quiero realizar la siguiente consulta:",
+          "",
+          `Nombre: ${nombre || "-"}`,
+          `Email: ${email || "-"}`,
+          "",
+          "Consulta:",
+          consulta || "-",
+        ].join("\n");
+
+        window.location.href =
+          `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       });
-    });
+    }
   </script>
 </BaseLayout>

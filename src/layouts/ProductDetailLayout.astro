@@ -1,0 +1,70 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  code: string;
+}
+
+const { title, description, category, code } = Astro.props;
+const whatsappUrl = `https://wa.me/5491168595152?text=${encodeURIComponent(
+  `Hola, quiero consultar por el producto ${title} (${code}).`,
+)}`;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Chok Filtros</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="detail-page">
+      <section class="detail-hero">
+        <div class="container detail-hero__inner">
+          <a class="detail-back" href="/#catalogo">Volver al catalogo</a>
+          <span class="product-card__tag">{category}</span>
+          <h1>{title}</h1>
+          <p>{description}</p>
+          <div class="detail-meta">
+            <strong>Codigo:</strong>
+            <span>{code}</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container detail-layout">
+          <article class="detail-content">
+            <slot />
+          </article>
+
+          <aside class="detail-sidebar">
+            <div class="detail-card">
+              <p class="eyebrow">Consulta comercial</p>
+              <h2>Solicita informacion</h2>
+              <p>
+                Consultanos por compatibilidad, disponibilidad y condiciones comerciales para este
+                producto.
+              </p>
+              <a class="button button--primary" href={whatsappUrl} target="_blank" rel="noreferrer">
+                Consultar por WhatsApp
+              </a>
+              <a class="button button--ghost" href="/#contacto">Ir a contacto</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
