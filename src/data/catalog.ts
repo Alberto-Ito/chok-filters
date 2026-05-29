@@ -1,6 +1,6 @@
 export const siteConfig = {
-  companyName: "Chok Filtros",
-  tagline: "Proteccion para cada motor",
+  companyName: "Zyron",
+  tagline: "Filtration. Performance. Drive.",
   whatsappNumber: import.meta.env.PUBLIC_WHATSAPP_NUMBER || "5491168595152",
   contactEmail: "ito.alberto.88@gmail.com",
   contactPhone: "+54 11 0000 0000",
